@@ -1,0 +1,75 @@
+@import "../../pages/Variables.scss";
+
+.cardEvent {
+  background-color: $color-gray;
+ 
+
+  margin-inline: 1em;
+  margin-block: 3em;
+
+  border-radius: 10px;
+  border: 1px solid $color-green;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+
+  height: 35vh;
+  width: 15vw;
+
+  padding-inline:1.5em;
+  padding-block: 2em;
+
+  word-wrap: break-word;
+  box-sizing: border-box;
+
+  margin-inline: 3em;
+  margin-block: 2em;
+
+}
+
+.titleEvent {
+    text-align: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.labelTitleEvent {
+    font-size: 2em;
+    font-weight: bolder;
+    color: $color-black;
+
+    
+  
+}
+
+.dateEvent {
+}
+
+.labelDateEvent {
+    color: $color-red;
+
+}
+
+.locationEvent {
+  
+}
+
+.labelLocationEvent {
+    color: $color-red;
+
+}
+
+.descriptionEvent {
+    
+}
+
+.labelDescriptionEvent {
+
+  
+}
+
+.fieldCardEvent{
+    width: 100%;
+    margin-block: 0.7em;
+
+}

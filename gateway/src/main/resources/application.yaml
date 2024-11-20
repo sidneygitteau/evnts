@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    consul:
+      discovery:
+        register: true
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+      loadbalancer:
+        ribbon:
+          enabled: false
+
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            maxAge: 3600
+
+      routes:
+        - id: auth
+          uri: lb://authentification
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/(?<path>.*), /auth/$\{path}
+            - PreserveHostHeader=true
+        - id: gestUtil
+          uri: lb://gestionUtilisateur
+          predicates:
+            - Path=/utilisateurs/**
+          filters:
+            - RewritePath=/utilisateurs/(?<path>.*), /utilisateurs/$\{path}
+            - PreserveHostHeader=true
+        - id: gestSal
+          uri: lb://gestionSalon
+          predicates:
+            - Path=/salon/**
+          filters:
+            - RewritePath=/salon/(?<path>.*), /salon/$\{path}
+            - PreserveHostHeader=true
+        - id: contact
+          uri: lb://contact
+          predicates:
+            - Path=/contact/**
+          filters:
+            - RewritePath=/contact/(?<path>.*), /contact/$\{path}
+            - PreserveHostHeader=true
+        - id: gestiongoogle
+          uri: lb://gestionGoogle
+          predicates:
+            - Path=/google/**
+          filters:
+            - RewritePath=/google/(?<path>.*), /google/$\{path}
+            - PreserveHostHeader=true
+

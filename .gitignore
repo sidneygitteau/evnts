@@ -1,0 +1,7 @@
+.idea
+*.iml
+*.code-workspace
+*.class
+bin/
+.vs/
+.DS_Store

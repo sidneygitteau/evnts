@@ -1,0 +1,134 @@
+@import "./../../pages/Variables.scss";
+
+.logoNavbarContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+
+.logoNavbar{
+height: 5em;
+widht: auto;
+}
+
+.navbarContainer {
+  height: 100vh;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+
+  border-right: 1px solid $color-gray;
+}
+
+.blocNavbar {
+  
+  margin-block: 0.3em;
+  display: flex;
+}
+
+
+
+
+
+.menu {
+  flex: 1;
+  padding-block: 2em;
+  flex-direction: column;
+}
+
+.img-profil-navbar {
+  height: 3em;
+  width: 3em;
+  margin-inline: 1em;
+  border-radius: 10px;
+}
+
+
+.navbarLink {
+  position: relative;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  margin-inline: 3em;
+  margin-block: 1.1em;
+}
+
+.navbarLinkLabel {
+  position: relative;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  // POLICE
+  font-size: 2em;
+  color: $color-red;
+  // LIEN
+  text-decoration: none;
+  
+}
+.active{
+  color: $color-green;
+}
+.navbarLinkLabel:visited {
+  
+}
+
+.navbarLinkLabel:hover {
+  color: $color-dark-red;
+}
+
+.profil {
+  height: 7vh;
+  align-items: center;
+  padding: 1em;
+
+  
+}
+
+.logoutLabel{
+  color: gray;
+  text-decoration: underline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+
+  padding-inline:1em;
+
+
+
+}
+.logoutLabel:hover{
+  cursor: pointer;
+}
+.navbarProfileLabels{
+  width: 100%;
+
+}
+
+
+.img-profil-navbar:hover {
+  cursor: pointer;
+}
+
+.pseudoLabelNavbar {
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-inline:1em;
+}
+
+.pseudoLabelNavbar:hover {
+  cursor: pointer;
+}
+
+.profilePictureContainer{
+  width: 4em;
+  float:left;
+}

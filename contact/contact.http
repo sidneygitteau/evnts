@@ -1,0 +1,49 @@
+@contact_HostAddress = http://localhost:5117
+
+####
+POST https://localhost:8084/contact/creation-utilisateur?email=coucou
+
+####
+POST https://localhost:7140/contact/creation-utilisateur?email=coute
+
+####
+POST https://localhost:7140/contact/demande-contact?demandeur=coute&receveur=coucou
+
+####
+GET https://localhost:7140/contact/get-demandes/coucou
+
+
+####
+POST https://localhost:7140/contact/ajout-contact?accepteur=coucou&envoyeur=coute
+
+
+####
+POST https://localhost:7140/contact/ajout-conversation?utilisateur1=coucou&utilisateur2=coute
+
+
+####
+POST https://localhost:7140/contact/envoie-message?envoyeur=coute&receveur=coucou&contenu=Salut!
+
+
+####
+POST https://localhost:7140/contact/vision-message?visionneur=coucou&envoyeur=coute
+
+
+####
+GET https://localhost:7140/contact/get-contacts/coucou
+
+
+####
+GET https://localhost:7140/contact/get-conversation?utilisateur1=coucou&utilisateur2=coute
+
+
+####
+GET https://localhost:7140/contact/get-conversations/coucou
+
+
+####
+DELETE https://localhost:7140/contact/suppression-contact?demandeur=coucou&cible=coute
+
+
+####
+DELETE https://localhost:7140/contact/suppression-utilisateur?email=coucou

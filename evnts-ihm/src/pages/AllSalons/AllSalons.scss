@@ -1,0 +1,42 @@
+@import "./../../pages/Variables.scss";
+
+.listeSalons{
+    flex :1;
+    width: 100%;
+    background-color: red;
+}
+.allRowsSalon{
+    width: 100%;
+    height: 100%;
+   
+
+    overflow-y: scroll;
+}
+
+.rowSalon{
+    display: flex;
+    margin-block:2em;
+}
+
+.salonPPContainer{
+
+}
+
+.salonPP{
+   height: 6em;
+   width:6em;
+
+   border-radius: 15px;
+}
+
+.salonNameContainer{
+    flex :1;
+    display: flex;
+    align-items: center;
+    padding-left: 3em
+}
+
+.labelSalonName{
+    font-size: 2em;
+    text-transform: uppercase;
+}

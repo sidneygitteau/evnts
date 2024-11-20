@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+@import "../src/pages/Variables.scss";
+
+body {
+  margin: 0;
+  font-family: "Oxygen", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.oxygen-light {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.oxygen-regular {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.oxygen-bold {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+// STYLES GENERAUX
+.page{
+  display: flex;
+}
+
+.navbarContainer{
+  width: 16vw;
+}
+.contentPage{
+  width: 100%;
+}
+
+.sectionHeaderPage{
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 2em;
+
+  // Border
+  border-bottom: 1px solid $color-gray;
+
+}
+
+.labelHeaderPage{
+    font-size: 3em;
+    color: $color-red;
+    font-weight: 800;
+}
+
+.contentContainer{
+  height: calc(90vh  - calc(2 * $padding-contentContainer));
+  padding :$padding-contentContainer;
+
+  overflow-y: scroll;
+}

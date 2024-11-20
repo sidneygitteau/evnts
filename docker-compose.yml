@@ -1,0 +1,156 @@
+version: '3.9'
+
+services:
+
+  consul:
+    image: consul:1.9
+    ports:
+      - "8500:8500"
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    image: mon-application-gateway
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - salonApp
+      - consul
+      - authentificationApp
+      - gestionUtilisateurApp
+      - contactApp
+      - googleApp
+
+  dbAuthentification:
+    image: mysql:latest
+    container_name: dbAuthentification
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: authentification
+    volumes:
+      - ./authentification-init.sql:/docker-entrypoint-initdb.d/authentification-init.sql
+
+  dbSalon:
+    image: mysql:latest
+    container_name: dbSalonName
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: salon
+    volumes:
+      - ./salon-init.sql:/docker-entrypoint-initdb.d/salon-init.sql
+
+  dbGestionUtilisateur:
+    image: mysql:latest
+    container_name: dbGestionUtilisateur
+    restart: always
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: utilisateur
+    volumes:
+      - ./utilisateur-init.sql:/docker-entrypoint-initdb.d/utilisateur-init.sql
+
+  dbContact:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3309:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: contact
+    volumes:
+      - ./contact-init.sql:/docker-entrypoint-initdb.d/contact-init.sql
+
+  dbGoogle:
+    image: mysql:latest
+    container_name: dbGoogle
+    restart: always
+    ports:
+      - 3310:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: google
+    volumes:
+      - ./google-init.sql:/docker-entrypoint-initdb.d/google-init.sql
+
+  salonApp:
+    build:
+      context: ./gestionSalon
+      dockerfile: Dockerfile
+    image: mon-application-salon
+    restart: always
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - dbSalon
+      - consul
+
+  authentificationApp:
+    build:
+      context: ./authentification
+      dockerfile: Dockerfile
+    image: mon-application-authentification
+    restart: always
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - dbAuthentification
+      - consul
+
+  gestionUtilisateurApp:
+    build:
+      context: ./gestionUtilisateur
+      dockerfile: Dockerfile
+    image: mon-application-utilisateur
+    restart: always
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - dbGestionUtilisateur
+      - consul
+
+  contactApp:
+    build:
+      context: ./contact
+      dockerfile: Dockerfile
+    image: mon-application-contact
+    restart: always
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - dbContact
+      - consul
+
+  googleApp:
+    build:
+      context: ./gestionGoogle
+      dockerfile: Dockerfile
+    image: mon-application-google
+    restart: always
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - dbGoogle
+      - consul
+
+  frontend:
+    build:
+      context: ./evnts-ihm
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./evnts-ihm:/app
+    working_dir: /app
+    command: npm start
